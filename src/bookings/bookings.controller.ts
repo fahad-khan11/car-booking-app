@@ -17,12 +17,16 @@ export class BookingsController {
 
   @Post()
   create(@Body() createBookingDto: CreateBookingDto, @currentUser() user: any) {
-    return this.bookingsService.create(createBookingDto);
+    return this.bookingsService.create({...createBookingDto,user:user.userId});
   }
 
   @Get()
   findAll() {
     return this.bookingsService.findAll();
+  }
+  @Get('/hotel/:id')
+   findByHotelId(@Param('id') id: string) {
+    return this.bookingsService.findByHotelId(+id);
   }
 
   @Get(':id')

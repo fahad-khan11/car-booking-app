@@ -29,26 +29,6 @@ export const BookingSwaggerSchema = {
         flightNumber: {
           type: 'string',
         },
-        vehicleInfo: {
-          type: 'object',
-          properties: {
-            type: {
-              type: 'string',
-              enum: ['scLASS', 'vclass', 'others'],
-            },
-            quantity: {
-              type: 'number',
-            },
-          },
-        },
-        bookingType: {
-          type: 'string',
-          enum: ['pickAnddrop', 'hourly'],
-        },
-        status: {
-          type: 'string',
-          enum: ['completed', 'rejected', 'in_progress'],
-        },
         note: {
           type: 'string',
         },
@@ -59,7 +39,7 @@ export const BookingSwaggerSchema = {
           type: 'number',
         },
         noOfVehicle: {
-          type: 'number',
+          type: 'string',
         },
         extraCharge: {
           type: 'number',
@@ -73,6 +53,24 @@ export const BookingSwaggerSchema = {
         driverNumber: {
           type: 'string',
         },
+        sClass:{
+          type: 'number',
+        },
+        vClass: {
+          type: 'number',
+        },
+
+        others:{
+       vehicleType:'string',
+       quantity:'number'
+    },
+
+        bookingType: {
+          type: 'string',
+        },
+        user:{
+          type:'number'
+        }
         
       },
     },

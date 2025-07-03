@@ -29,11 +29,16 @@ export class Booking extends BaseEntity {
   @Column({ nullable: true })
   flightNumber: string;
 
-  @Column({ type: 'json' })
-  vehicleInfo: VehicleInfo;
+  @Column({nullable: true})
+  sClass: number;
 
   @Column({nullable: true})
-  bookingType: BookingType;
+  vClass: number;
+  @Column({ type: 'jsonb',nullable: true })
+    others:{
+      vehicleType:String
+      quantity:number
+    };
 
   @Column({nullable: true})
   status: BookingStatus;
@@ -48,7 +53,7 @@ export class Booking extends BaseEntity {
   fare: number;
 
   @Column({ nullable:true })
-  noOfVehicle: number;
+  noOfVehicle: string;
 
   @Column({ nullable:true })
   extraCharge: number;
@@ -62,11 +67,13 @@ export class Booking extends BaseEntity {
   @Column({ nullable: true })
   driverNumber: string;
 
+  @Column({ nullable: true })
+  bookingType: string;
 
-  @ManyToOne(() => User, { nullable: true })
+
+  @ManyToOne(() => User,(user)=>user.bookings, { nullable: true })
   @JoinColumn()
   user: User;
-
 }
 
 export enum BookingType {

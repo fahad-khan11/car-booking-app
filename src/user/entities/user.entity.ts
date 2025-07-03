@@ -1,5 +1,6 @@
 import { BaseEntity } from 'base.entity';
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Booking } from 'src/bookings/entities/booking.entity';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 
 @Entity('Hotels')
 export class User extends BaseEntity {
@@ -13,6 +14,12 @@ export class User extends BaseEntity {
   phone: string;
   @Column({nullable:true})
   role: Role;
+
+@OneToMany(() => Booking, (booking) => booking.user, { nullable: true })
+bookings: Booking[];
+
+
+  
 
 }
 

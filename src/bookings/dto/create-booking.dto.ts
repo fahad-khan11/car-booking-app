@@ -1,8 +1,12 @@
-import { BookingType, BookingStatus, VehicleInfo } from '../entities/booking.entity';
+import { User } from 'src/user/entities/user.entity';
+import {
+  BookingType,
+  BookingStatus,
+  VehicleInfo,
+} from '../entities/booking.entity';
 import { IsOptional } from 'class-validator';
 
 export class CreateBookingDto {
-  
   @IsOptional()
   date: Date;
 
@@ -11,7 +15,7 @@ export class CreateBookingDto {
 
   @IsOptional()
   passengerName: string;
-   
+
   @IsOptional()
   guest_phoneno: string;
 
@@ -26,9 +30,6 @@ export class CreateBookingDto {
 
   @IsOptional()
   flightNumber: string;
-
-   @IsOptional()
-  vehicleInfo: VehicleInfo;
 
   @IsOptional()
   bookingType: BookingType;
@@ -46,7 +47,7 @@ export class CreateBookingDto {
   fare: number;
 
   @IsOptional()
-  noOfVehicle: number;
+  noOfVehicle: string;
 
   @IsOptional()
   extraCharge: number;
@@ -59,6 +60,23 @@ export class CreateBookingDto {
 
   @IsOptional()
   driverNumber: string;
-  
+
+  @IsOptional()
+  sClass: number;
+
+  @IsOptional()
+  vClass: number;
+
+  @IsOptional()
+  others:{
+    vehicleType:String
+    quantity:number
+  };
+
+  @IsOptional()
+  bookType:string;
+
+  @IsOptional()
+  user:User
 
 }

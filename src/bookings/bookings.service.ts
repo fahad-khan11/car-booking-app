@@ -12,12 +12,20 @@ export class BookingsService {
     private readonly bookingRepository: Repository<Booking>,
   ) {}
   create(createBookingDto: CreateBookingDto) {
-    return this.bookingRepository.save(createBookingDto);
+    return this.bookingRepository.save(createBookingDto,);
   }
 
   findAll() {
-    return this.bookingRepository.find({  order: { createdAt: 'DESC' },});
+    return this.bookingRepository.find({  order: { createdAt: 'DESC' },
+    relations:['user'] });
 
+  }
+
+  findByHotelId(hotelId: number) {
+    return this.bookingRepository.find({
+      where: { user:{id:hotelId} },
+      order: { createdAt: 'DESC' },
+    });
   }
 
   findOne(id: number) {
