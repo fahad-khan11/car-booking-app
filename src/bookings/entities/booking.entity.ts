@@ -69,7 +69,7 @@ export class Booking extends BaseEntity {
 
   @Column({ nullable: true })
   bookingType: string;
-
+  
 
   @ManyToOne(() => User,(user)=>user.bookings, { nullable: true })
   @JoinColumn()

@@ -71,6 +71,7 @@ export const BookingSwaggerSchema = {
         user:{
           type:'number'
         }
+
         
       },
     },
