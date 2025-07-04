@@ -11,13 +11,15 @@ export class UserService {
   constructor(
     @InjectRepository(User)
     private readonly usersRepository: Repository<User>,
-  
+
   ) {}
 async  create(createUserDto: CreateUserDto) {
     return await this.usersRepository.save(createUserDto);
   }
  async findAll() {
-   return await this.usersRepository.find();
+   return await this.usersRepository.find({
+    where: { role: Role.HOTEL },
+   });
   }
 
 
