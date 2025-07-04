@@ -15,16 +15,27 @@ export class BookingsService {
     return this.bookingRepository.save(createBookingDto,);
   }
 
-  findAll() {
-    return this.bookingRepository.find({  order: { createdAt: 'DESC' },
-    relations:['user'] });
+  async findAll(hotelId: number) {
+   const bookings = await this.bookingRepository
+  .createQueryBuilder('booking')
+  .innerJoin('booking.user', 'hotel')
+  .where('hotel.id= :hotelId', { hotelId })
+  .orderBy(`
+    CASE
+      WHEN date >= CURRENT_DATE THEN 0
+      ELSE 1
+    END
+  `)
+  .addOrderBy('date', 'ASC')
+  .getMany();
+  return bookings;
 
   }
 
   findByHotelId(hotelId: number) {
     return this.bookingRepository.find({
       where: { user:{id:hotelId} },
-      order: { createdAt: 'DESC' },
+      order: { date: 'DESC' },
     });
   }
 

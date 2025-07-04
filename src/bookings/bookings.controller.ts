@@ -20,9 +20,9 @@ export class BookingsController {
     return this.bookingsService.create({...createBookingDto,user:user.userId});
   }
 
-  @Get()
-  findAll() {
-    return this.bookingsService.findAll();
+  @Get('all/hotel/:id')
+  findAll(@Param('id') id: string) {
+    return this.bookingsService.findAll(+id);
   }
   @Get('/hotel/:id')
    findByHotelId(@Param('id') id: string) {
